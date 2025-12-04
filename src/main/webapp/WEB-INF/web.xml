@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app 
+    xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+    version="6.0">
+
+    <!-- REQUIRED FOR JSF INITIALIZATION -->
+    <listener>
+        <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+    </listener>
+
+    <!-- JSF CONFIG REQUIRED -->
+    <context-param>
+        <param-name>jakarta.faces.ENABLE_CDI_RESOLVER_CHAIN</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>jakarta.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    
+    <!-- Your Servlets -->
+    <servlet>
+        <servlet-name>userServlet</servlet-name>
+        <servlet-class>servlet.userServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>staffServlet</servlet-name>
+        <servlet-class>servlet.staffServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>prodetcServlet</servlet-name>
+        <servlet-class>servlet.prodetcServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>orderServlet</servlet-name>
+        <servlet-class>servlet.orderServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>itemServlet</servlet-name>
+        <servlet-class>servlet.itemServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>membershipServlet</servlet-name>
+        <servlet-class>servlet.membershipServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>membershipServlet1</servlet-name>
+        <servlet-class>servlet.membershipServlet1</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>payment</servlet-name>
+        <servlet-class>servlet.payment</servlet-class>
+    </servlet>
+
+    <!-- Faces Servlet (updated for Jakarta) -->
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!-- Mappings -->
+    <servlet-mapping>
+        <servlet-name>userServlet</servlet-name>
+        <url-pattern>/userServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>staffServlet</servlet-name>
+        <url-pattern>/staffServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>prodetcServlet</servlet-name>
+        <url-pattern>/prodetcServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>orderServlet</servlet-name>
+        <url-pattern>/orderServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>itemServlet</servlet-name>
+        <url-pattern>/itemServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>membershipServlet</servlet-name>
+        <url-pattern>/membershipServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>membershipServlet1</servlet-name>
+        <url-pattern>/membershipServlet1</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>payment</servlet-name>
+        <url-pattern>/payment</url-pattern>
+    </servlet-mapping>
+
+    <!-- JSF URL Pattern -->
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+
+    <!-- Session Timeout -->
+    <session-config>
+        <session-timeout>200</session-timeout>
+    </session-config>
+
+    <!-- Welcome Page -->
+    <welcome-file-list>
+        <welcome-file>login.jsf</welcome-file>
+    </welcome-file-list>
+
+</web-app>

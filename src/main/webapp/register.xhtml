@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:pt="jakarta.faces.passthrough">
+    <h:head>
+        <title>Registration Form</title>
+        <style>
+            /* Styling for the body background */
+            body {
+                background: url(assets/img/hero/h1_hero.png);
+                /*background: linear-gradient(to right, #6a11cb, #2575fc);*/
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                height: 500px; /* Set the height of the container */
+
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                font-family: Arial, sans-serif;
+                margin: 0;
+            }
+
+            /* Styling for the form container */
+            .form-container {
+                background-color: #ffffff63;
+                padding: 30px;
+                border-radius: 12px;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                width: 400px;
+                text-align: center;
+            }
+
+            /* Heading style */
+            h3 {
+                color: #333333;
+                margin-bottom: 25px;
+                font-size: 1.5rem;
+            }
+
+            /* Form fields */
+            .form-field {
+                margin-bottom: 20px;
+                text-align: left;
+            }
+            .form-field label {
+                font-weight: bold;
+                font-size: 0.9rem;
+                color: #333333;
+            }
+
+            input[type="text"], input[type="password"] {
+                width: 100%;
+                padding: 12px;
+                margin-top: 5px;
+                border: 1px solid #cccccc;
+                border-radius: 6px;
+                box-sizing: border-box;
+                font-size: 0.9rem;
+            }
+            input[type="text"]:focus, input[type="password"]:focus {
+                border-color: #2575fc;
+                outline: none;
+                box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
+            }
+
+            /* Submit button styling */
+            .submit-button {
+                width: 100%;
+                padding: 12px;
+                background-color: #ff6900;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .submit-button:hover {
+                background-color: #c87337;
+            }
+
+            /* Additional styles for better layout */
+            .form-footer {
+                margin-top: 15px;
+                font-size: 0.8rem;
+                color: #333333;
+            }
+            .form-footer a {
+                color: #007bff;
+                text-decoration: none;
+            }
+            .form-footer a:hover {
+                text-decoration: underline;
+                color: 0056b3;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="form-container">
+            <h3>Create Account</h3>
+            <h:form>
+                <div class="form-field">
+                    <h:outputLabel for="username" value="Username:" />
+                    <h:inputText id="username" value="#{registerCDIBean.name}" required="true" requiredMessage="Username is required."
+                                 validatorMessage="Username must be of 5 characters">
+                        <f:validateLength minimum="4"/>
+                    </h:inputText>
+                    <h:message for="username" style="color: red"/>
+                </div>
+
+                <div class="form-field">
+                    <h:outputLabel for="email" value="Email:" />
+                    <h:inputText id="email" value="#{registerCDIBean.email}" required="true" requiredMessage="Email is required."
+                                 validatorMessage="Email must be of 5 characters">
+                        <f:validateLength minimum="4"/>
+                    </h:inputText>
+                    <h:message for="email" style="color: red"/>
+                </div>
+
+                <div class="form-field">
+                    <h:outputLabel for="contactNumber" value="Contact Number:" />
+                    <h:inputText id="contactNumber" value="#{registerCDIBean.contact}" required="true" requiredMessage="COntact is required."
+                                 validatorMessage="Contact must be of 10 characters">
+                        <f:validateLength minimum="10" maximum="10"/>
+                    </h:inputText>
+                    <h:message for="contactNumber" style="color: red"/>
+                </div>
+
+                <div class="form-field">
+                    <h:outputLabel for="address" value="Address" />
+                    <h:inputText id="address" value="#{registerCDIBean.address}" required="true" requiredMessage="ADdress is required."
+                                 validatorMessage="Address must be of 5 characters">
+                        <f:validateLength minimum="4"/>
+                    </h:inputText>
+                    <h:message for="address" style="color: red"/>
+                </div>
+
+                <div class="form-field">
+                    <h:outputLabel for="password" value="Password:" />
+                    <h:inputSecret id="password" value="#{registerCDIBean.password}" required="true" requiredMessage="Password is required."
+                                   validatorMessage="Password must be of 4 characters">
+                        <f:validateLength minimum="3"/>
+                    </h:inputSecret>
+                    <h:message for="password" style="color: red"/>
+                </div>
+                <h:messages globalOnly="true" style="color: red"/> 
+
+                <!--                <div class="form-field">
+                                    <h:outputLabel for="confirmPassword" value="Confirm Password:" />
+                                    <h:inputSecret id="confirmPassword" value="" />
+                                </div>-->
+
+                <h:commandButton value="Register" action="#{registerCDIBean.addUser()}" styleClass="submit-button" />
+            </h:form>
+            <div class="form-footer">
+                Already have an account ? <a href="login.jsf"><b>Log in</b></a>
+            </div>
+        </div>
+    </h:body>
+</html>

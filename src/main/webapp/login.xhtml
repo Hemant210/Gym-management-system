@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
+<h:head>
+    <title>Login Form</title>
+
+    <style>
+        body {
+            background: url('assets/img/hero/h1_hero.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.4);
+            padding: 30px;
+            border-radius: 12px;
+            width: 300px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .form-field {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-field label {
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #2575fc;
+            outline: none;
+            box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff6900;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background-color: #c87337;
+        }
+
+        .register-link {
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .register-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</h:head>
+
+<h:body>
+    <div class="form-container">
+        <h3>Login Form</h3>
+
+        <h:form>
+
+            <div class="form-field">
+                <h:outputLabel for="username" value="Email:" />
+                <h:inputText id="username" value="#{loginBean.email}" required="true" />
+            </div>
+
+            <div class="form-field">
+                <h:outputLabel for="password" value="Password:" />
+                <h:inputSecret id="password" value="#{loginBean.password}" required="true" />
+            </div>
+
+            <h:outputText value="#{loginBean.errorstatus}" style="color:red;" />
+
+            <h:commandButton value="Login"
+                             action="#{loginBean.login()}"
+                             styleClass="login-button" />
+
+        </h:form>
+
+        <div class="register-link">
+            <p>Don't have an account?
+                <h:outputLink value="register.jsf"><b>Register here</b></h:outputLink>
+            </p>
+        </div>
+
+    </div>
+</h:body>
+
+</html>
