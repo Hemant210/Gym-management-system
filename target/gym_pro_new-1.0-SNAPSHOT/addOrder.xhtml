@@ -216,7 +216,9 @@
                                                  "image": "path/to/logo.png",
                                                  "handler": function (response) {
                                                      // Trigger the hidden button to process payment in JSF
-                                                                             document.getElementById('orderForm:hiddenPayButton').click();
+                                                     document.getElementById('orderForm:hiddenPayButton').click();
+                                                     //document.getElementById('#{component.clientId("hiddenPayButton")}').click();
+
 
                                                      // In this version, we won't send the paymentId and signature explicitly to the backend
                                                      // as we are not verifying them on the server-side.
