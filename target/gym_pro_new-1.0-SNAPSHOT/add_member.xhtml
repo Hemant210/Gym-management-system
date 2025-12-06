@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:pt="jakarta.faces.passthrough">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Add Member</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+
+
+        <link rel="shortcut icon" type="image/x-icon" href='assets/img/favicon.ico' />
+
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+        <link rel="stylesheet" href="assets/css/slicknav.css" />
+        <link rel="stylesheet" href="assets/css/flaticon.css" />
+        <link rel="stylesheet" href="assets/css/gijgo.css" />
+        <link rel="stylesheet" href="assets/css/animate.min.css" />
+        <link rel="stylesheet" href="assets/css/animated-headline.css" />
+        <link rel="stylesheet" href="assets/css/magnific-popup.css" />
+        <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+        <link rel="stylesheet" href="assets/css/themify-icons.css" />
+        <link rel="stylesheet" href="assets/css/slick.css" />
+        <link rel="stylesheet" href="assets/css/nice-select.css" />
+        <link rel="stylesheet" href="assets/css/style.css"/>
+
+        <link rel="stylesheet" href="assets/css/add_mem.css"/>
+
+
+    </h:head>
+    <h:body style="background-image: url(assets/img/hero/h1_hero.png)">
+
+
+
+        <!--Add Member-->
+
+
+        <div class="container" style="margin-top: 27px;">
+            <!-- Header Section -->
+            <div class="header">
+                <a href="home.jsf" class="exit-btn">
+                    <i class="fa fa-times-circle"></i>Exit
+                </a>
+                <div class="header-title">
+                    <i class="fa fa-user header-icon"></i>
+                    <h1>ADD MEMBER</h1>
+                </div>
+            </div>
+
+            <!-- Form Section -->
+            <h:form class="member-form">
+                <h:messages globalOnly="true" style="color: red;" />
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">Address:</label>
+                        <h:inputTextarea id="address" value="#{memberCDIBean.address}" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <h:inputText id="firstName" value="#{memberCDIBean.name}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <h:inputText id="email" value="#{memberCDIBean.email}" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number:</label>
+                        <h:inputText id="phoneNumber" value="#{memberCDIBean.contact}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <h:selectOneMenu id="gender" value="#{memberCDIBean.gender}">
+                            <f:selectItem itemValue="" itemLabel="Select gender" noSelectionOption="true" />
+                            <f:selectItem itemValue="male" itemLabel="Male" />
+                            <f:selectItem itemValue="female" itemLabel="Female" />
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="trainer">Trainer:</label>
+                        <h:selectOneMenu id="brand" value="#{memberCDIBean.staffId.id}">
+                            <f:selectItem itemValue="" itemLabel="Select Trainer" noSelectionOption="true" />
+                            <f:selectItems value="#{memberCDIBean.staffs}" var="trainer" 
+                                           itemValue="#{trainer.id}" 
+                                           itemLabel="#{trainer.staffName}" />
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <h:commandButton class="btn btn-primary" type="submit" value="Add Member" 
+                                     action="#{memberCDIBean.addMember(loginBean.u.id)}" />
+                </div>
+            </h:form>
+
+        </div>
+
+
+
+
+        <!-- JS here -->
+
+        <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
+
+        <!-- Jquery, Popper, Bootstrap -->
+        <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+
+        <!-- Jquery Mobile Menu -->
+        <script src="assets/js/jquery.slicknav.min.js"></script>
+
+        <!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="assets/js/owl.carousel.min.js"></script>
+        <script src="assets/js/slick.min.js"></script>
+
+        <!-- One Page, Animated-HeadLin -->
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/animated.headline.js"></script>
+        <script src="assets/js/jquery.magnific-popup.js"></script>
+
+        <!-- Date Picker -->
+        <script src="assets/js/gijgo.min.js"></script>
+        <!-- Nice-select, sticky -->
+        <script src="assets/js/jquery.nice-select.min.js"></script>
+        <script src="assets/js/jquery.sticky.js"></script>
+
+        <!-- counter , waypoint,Hover Direction -->
+        <script src="assets/js/jquery.counterup.min.js"></script>
+        <script src="assets/js/waypoints.min.js"></script>
+        <script src="assets/js/jquery.countdown.min.js"></script>
+        <script src="assets/js/hover-direction-snake.min.js"></script>
+
+        <!-- contact js -->
+        <script src="assets/js/contact.js"></script>
+        <script src="assets/js/jquery.form.js"></script>
+        <script src="assets/js/jquery.validate.min.js"></script>
+        <script src="assets/js/mail-script.js"></script>
+        <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+
+        <!-- Jquery Plugins, main Jquery -->	
+        <script src="assets/js/plugins.js"></script>
+        <script src="assets/js/main.js"></script>
+
+            </h:body>
+
+</html>
