@@ -36,63 +36,70 @@
 
         <header>
             <div class="header-area header-transparent">
-                <div class="main-header " style="background-color: black;">
+                <div class="main-header">
                     <div class="container-fluid">
                         <div class="row align-items-center">
-                            <!-- Logo -->
-                            <div class="col-xl-2 col-lg-2 col-md-1">
-                                <div class="logo">
-                                    <h:outputLink value="home.jsf">
-                                        <img src="assets/img/logo/fit.png" alt="Logo" style="height: 150px" />
-                                    </h:outputLink>
-                                </div>
+
+                            <div class="col-xl-2 col-lg-2 col-md-2">
                             </div>
-                            <div class="col-xl-10 col-lg-10 col-md-10">
+
+                            <!-- NAVIGATION -->
+                            <div class="col-xl-10 col-lg-10 col-md-2">
                                 <div class="menu-main d-flex align-items-center justify-content-end">
-                                    <!-- Main Menu -->
+
                                     <div class="main-menu f-right d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">
-                                                <li><h:link value="Home" outcome="home" /></li>
+
+                                                <!-- HOME -->
+
                                                 <li>
-                                                    <h:link value="Pages" />
-                                                    <ul class="submenu">
-                                                        <li><h:link outcome="product" value="Product"/></li>
-                                                        
-                                                        <li><h:link value="About" outcome="aboutus"/></li>
-                                                        <li><h:link value="Service" outcome="service" /></li>
-                                                        <li><h:link value="Gallery" outcome="gallery" /></li>
-                                                        <li><h:link value="Trainers" outcome="trainer" /></li>
-                                                    </ul>
+                                                    <h:link value="Become Member" outcome="add_member" />
                                                 </li>
 
-                                                <li><h:link value="Contact" outcome="contact" /></li>
+
                                                 <li>
-                                                    <h:link value="View Profile" outcome="user_profile">
-                                                        <f:param name="userId" value="#{loginBean.u.id}"/>
-                                                    </h:link>
+                                                    <h:link outcome="product" value="Product" />
                                                 </li>
+                                                <!-- PRODUCT PAGE -->
                                                 <li>
-                                                    <h:form>
-                                                        <h:commandLink value="Log Out" action="#{loginBean.logout()}" />
-                                                    </h:form>
+                                                    <li><h:link outcome="contact" value="Contact" /></li>
+
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">About us</a>
+                                                    <ul class="submenu">
+                                                        <li><h:link outcome="aboutus" value="info" /></li>
+                                                        <li><h:link outcome="gallery" value="Gallery" /></li>
+                                                        <li><h:link outcome="service" value="Our Services" /></li>
+                                                        <li><h:link outcome="trainer" value="Our Trainers" /></li>
+                                                        <li class="menu-divider"></li>
+                                                    </ul>
                                                 </li>
                                             </ul>
                                         </nav>
                                     </div>
-                                    <div class="header-right-btn f-right d-none d-lg-block ml-30" >
-                                        <h:link class="btn header-btn" outcome="add_member" value="Become a Member" style="height: 40px; align-content: Center;"/>
+
+                                    <!-- BECOME MEMBER BUTTON -->
+
+                                    <!-- USER PROFILE BUTTON -->
+                                    <div class="header-right-btn f-right d-none d-lg-block ml-30">
+                                        <h:link outcome="user_profile" 
+                                                styleClass="btn header-btn">
+                                            <f:param name="userId" value="#{loginBean.u.id}" />
+                                            #{loginBean.u.name}
+                                        </h:link>
                                     </div>
-                                    <div class="header-right-btn f-right d-none d-lg-block ml-30" ></div>
-                                    <div class="header-right-btn f-right d-none d-lg-block ml-30" >
-                                        <button class="btn header-btn" style="height: 40px; align-content: Center;">#{loginBean.u.name}</button>
-                                    </div>
+
                                 </div>
                             </div>
-                            <!-- Mobile Menu -->
+
+                            <!-- MOBILE MENU -->
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -112,7 +119,11 @@
                                     </div>
                                     <h5 class="user-name">#{session.getAttribute('name')}</h5>
                                     <h6 class="user-email">#{profileCDI.u.email}</h6>
-                                </div>
+                                    <h:commandButton value="Log Out"
+                                                     action="#{loginBean.logout}"
+                                                     styleClass="btn btn-danger"
+                                                     style="height: 30px; " />
+                                </div>`
                                 <!--                                <div class="about">
                                                                     <h5>About</h5>
                                                                     <p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
@@ -132,7 +143,6 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="fullName">Full Name</label>
-                                            <!--                                        <input type="text" class="form-control" id="fullName" placeholder="Enter full name"/>-->
                                             <h:inputText value="#{profileCDI.u.name}" class="form-control"/>
                                         </div>
                                     </div>
@@ -157,28 +167,31 @@
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label for="Street">Street</label>
+                                            <label for="Street">Full address</label>
                                             <!--<input type="name" class="form-control" id="Street" placeholder="Enter Street"/>-->
                                             <h:inputTextarea value="#{profileCDI.u.address}" class="form-control"/>
                                         </div>
                                     </div>
-                           
+
                                 </div>
                                 <div class="row gutters">
-                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                        <div class="text-right">
-                                            <h:commandButton class="btn btn-danger" action="#{profileCDI.updateProfile}" value="Update Profile" style="height: 40px"/>
+                                    <div class="col-12">
+                                        <div class="d-flex justify-content-end">
+
+                                            <h:commandButton value="Update Profile"
+                                                             action="#{profileCDI.updateProfile}"
+                                                             styleClass="btn btn-danger"
+                                                             style="height: 40px; margin-right: 10px;" />
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </h:form>
                     </div>
                 </div>
             </div>
         </div>
-
-
         <footer>
             <div class="footer-area section-bg"  data-background="assets/img/gallery/section_bg03.png">
                 <div class="container">

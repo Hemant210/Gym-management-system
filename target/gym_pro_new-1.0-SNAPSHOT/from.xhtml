@@ -32,51 +32,77 @@
     <h:body>
         
         <header>
-        <!-- Header Start -->
-        <div class="header-area header-transparent">
-            <div class="main-header header-sticky">
-                <div class="container-fluid">
-                    <div class="row align-items-center">
-                        <!-- Logo -->
-                        <div class="col-xl-2 col-lg-2 col-md-1">
-                            <div class="logo">
-                                <h:outputLink value="home.jsf">
-                                        <img src="assets/img/logo/fit.png" alt="Logo" style="height: 150px" />
-                                </h:outputLink>
+            <div class="header-area header-transparent">
+                <div class="main-header">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+
+                            <div class="col-xl-2 col-lg-2 col-md-2">
                             </div>
-                        </div>
-                        <div class="col-xl-10 col-lg-10 col-md-10">
-                            <div class="menu-main d-flex align-items-center justify-content-end">
-                                <!-- Main-menu -->
-                                <div class="main-menu f-right d-none d-lg-block">
-                                    <nav>
-                                        <ul id="navigation">
-                                            <li><h:link value="Home" outcome="home" /></li>
-                                            <li><h:link value="About" outcome="about" /></li>
-                                            <li><h:link value="Service" outcome="service" /></li>
-                                            <li><h:link value="Gallery" outcome="gallery" /></li>
-                                            <li><h:link value="Contact" outcome="contact" /></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <!-- Header Button -->
-                                <div class="header-right-btn f-right d-none d-lg-block ml-30">
-                                    <h:link value="Become a Member" outcome="from.xhtml" styleClass="btn header-btn" />
+
+                            <!-- NAVIGATION -->
+                            <div class="col-xl-10 col-lg-10 col-md-2">
+                                <div class="menu-main d-flex align-items-center justify-content-end">
+
+                                    <div class="main-menu f-right d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">
+
+                                                <!-- HOME -->
+
+                                                <li>
+                                                    <h:link value="Become Member" outcome="add_member" />
+                                                </li>
+
+
+                                                <li>
+                                                    <h:link outcome="product" value="Product" />
+                                                </li>
+                                                <!-- PRODUCT PAGE -->
+                                                <li>
+                                                    <li><h:link outcome="contact" value="Contact" /></li>
+
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">About us</a>
+                                                    <ul class="submenu">
+                                                        <li><h:link outcome="aboutus" value="info" /></li>
+                                                        <li><h:link outcome="gallery" value="Gallery" /></li>
+                                                        <li><h:link outcome="service" value="Our Services" /></li>
+                                                        <li><h:link outcome="trainer" value="Our Trainers" /></li>
+                                                        <li class="menu-divider"></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+
+                                    <!-- BECOME MEMBER BUTTON -->
+
+                                    <!-- USER PROFILE BUTTON -->
+                                    <div class="header-right-btn f-right d-none d-lg-block ml-30">
+                                        <h:link outcome="user_profile" 
+                                                styleClass="btn header-btn">
+                                            <f:param name="userId" value="#{loginBean.u.id}" />
+                                            #{loginBean.u.name}
+                                        </h:link>
+                                    </div>
+
                                 </div>
                             </div>
-                        </div>
-                        <!-- Mobile Menu -->
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
+
+                            <!-- MOBILE MENU -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Header End -->
         </header>
-        
-        
+
         <main>
         <!--? Hero Start -->
         <div class="slider-area2">
