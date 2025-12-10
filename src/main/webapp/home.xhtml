@@ -36,77 +36,77 @@
 
     <h:body>
         <header>
-    <div class="header-area header-transparent">
-        <div class="main-header">
-            <div class="container-fluid">
-                <div class="row align-items-center">
+            <div class="header-area header-transparent">
+                <div class="main-header">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
 
-                    <div class="col-xl-2 col-lg-2 col-md-2">
-                    </div>
-
-                    <!-- NAVIGATION -->
-                    <div class="col-xl-10 col-lg-10 col-md-2">
-                        <div class="menu-main d-flex align-items-center justify-content-end">
-
-                            <div class="main-menu f-right d-none d-lg-block">
-                                <nav>
-                                    <ul id="navigation">
-
-                                        <!-- HOME -->
-                                                                                
-                                           <li>
-                                            <h:link value="Become Member" outcome="add_member" />
-                                        </li>
-                            
-
-                                       <li>
-                                            <h:link outcome="product" value="Product" />
-                                        </li>
-                                        <!-- PRODUCT PAGE -->
-                                         <li>
-                                     <li><h:link outcome="contact" value="Contact" /></li>
-
-                                         </li>
-                                        
-                                        <li>
-                                            <a href="#">About us</a>
-                                            <ul class="submenu">
-                                                <li><h:link outcome="aboutus" value="info" /></li>
-                                                <li><h:link outcome="gallery" value="Gallery" /></li>
-                                                <li><h:link outcome="service" value="Our Services" /></li>
-                                                <li><h:link outcome="trainer" value="Our Trainers" /></li>
-                                                <li class="menu-divider"></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </nav>
+                            <div class="col-xl-2 col-lg-2 col-md-2">
                             </div>
 
-                            <!-- BECOME MEMBER BUTTON -->
-                         
-                            <!-- USER PROFILE BUTTON -->
-                            <div class="header-right-btn f-right d-none d-lg-block ml-30">
-                                <h:link outcome="user_profile" 
-                                        styleClass="btn header-btn">
-                                    <f:param name="userId" value="#{loginBean.u.id}" />
-                                    #{loginBean.u.name}
-                                </h:link>
+                            <!-- NAVIGATION -->
+                            <div class="col-xl-10 col-lg-10 col-md-2">
+                                <div class="menu-main d-flex align-items-center justify-content-end">
+
+                                    <div class="main-menu f-right d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">
+
+                                                <!-- HOME -->
+
+                                                <li>
+                                                    <h:link value="Become Member" outcome="add_member" />
+                                                </li>
+
+
+                                                <li>
+                                                    <h:link outcome="product" value="Product" />
+                                                </li>
+                                                <!-- PRODUCT PAGE -->
+                                                <li>
+                                                    <li><h:link outcome="contact" value="Contact" /></li>
+
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">About us</a>
+                                                    <ul class="submenu">
+                                                        <li><h:link outcome="aboutus" value="info" /></li>
+                                                        <li><h:link outcome="gallery" value="Gallery" /></li>
+                                                        <li><h:link outcome="service" value="Our Services" /></li>
+                                                        <li><h:link outcome="trainer" value="Our Trainers" /></li>
+                                                        <li class="menu-divider"></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+
+                                    <!-- BECOME MEMBER BUTTON -->
+
+                                    <!-- USER PROFILE BUTTON -->
+                                    <div class="header-right-btn f-right d-none d-lg-block ml-30">
+                                        <h:link outcome="user_profile" 
+                                                styleClass="btn header-btn">
+                                            <f:param name="userId" value="#{loginBean.u.id}" />
+                                            #{loginBean.u.name}
+                                        </h:link>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- MOBILE MENU -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
                             </div>
 
                         </div>
                     </div>
-
-                    <!-- MOBILE MENU -->
-                    <div class="col-12">
-                        <div class="mobile_menu d-block d-lg-none"></div>
-                    </div>
-
                 </div>
             </div>
-        </div>
-    </div>
-</header>
-        
+        </header>
+
         <main>
             <!-- Slider Area Start -->
             <div class="slider-area position-relative">
@@ -487,8 +487,6 @@
         <script src="assets/js/main.js"></script>
 
         <script src="assets/js/product_slider.js"></script>
-
-
     </h:body>
 </html>
 
