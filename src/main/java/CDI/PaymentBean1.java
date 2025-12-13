@@ -1,24 +1,36 @@
-package cdi;
-
+package CDI;
 import ejb.PaymentEJB;
+import ejb.adminBeanLocal;
 import entities.Ordertbl;
-import entities.PaymentTable;
+import entities.StaffTable;
 import java.util.Collection;
+import jakarta.annotation.PostConstruct;
 import jakarta.inject.Named;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
+import java.io.Serializable;
 
 @Named(value = "paymentBean")
-@RequestScoped
-public class PaymentBean1 {
+@ViewScoped
+public class PaymentBean1 implements Serializable {
 
     @Inject
-    private PaymentEJB paymentEJB;  // Inject the PaymentEJB for order creation
+    private PaymentEJB paymentEJB;
+
+    @Inject
+    private adminBeanLocal abl;  // Inject the PaymentEJB for order creation
 
     private int totalAmount;
     private String orderId;
     private String paymentStatusMessage;
     private Collection<Ordertbl> orders;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("=== PaymentBean1 INIT CALLED ===");
+        orders = abl.getAllOrders();
+        System.out.println("Orders fetched = " + orders.size());
+    }
 
     public int getTotalAmount() {
         return totalAmount;

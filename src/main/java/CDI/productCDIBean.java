@@ -180,7 +180,7 @@ public class productCDIBean implements Serializable {
     }
 
     public adminBeanLocal getAbl() {
-        return abl;
+        return abl; 
     }
 
     public void setAbl(adminBeanLocal abl) {
