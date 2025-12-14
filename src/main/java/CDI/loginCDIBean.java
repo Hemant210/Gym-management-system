@@ -114,31 +114,22 @@ public class loginCDIBean implements Serializable {
     }
 
     public String login() {
-
         try {
-            // Load user from DB
-            this.u = abl.getUserByEmail(email);
+            // fetch user by email
+            u = abl.getUserByEmail(email);
 
-            if (this.u == null) {
+            if (u == null) {
                 errorstatus = "Invalid email or password";
-                return "login";
+                return null;
             }
 
-//            // VERIFY PASSWORD USING PBKDF2
-//            Pbkdf2PasswordHashImpl hash = new Pbkdf2PasswordHashImpl();
-//            boolean valid = hash.verify(password.toCharArray(), this.u.getPassword());
-//
-//            if (!valid) {
-//                errorstatus = "Invalid email or password";
-//                return "login";
-//            }
-
-
-            if(!password.equals(this.getPassword())){
-             errorstatus = "Invalid email or password";
-             return "login";
+            // compare password with DB password
+            if (!password.equals(u.getPassword())) {
+                errorstatus = "Invalid email or password";
+                return null;
             }
-            // Create session
+
+            // create session
             FacesContext facesContext = FacesContext.getCurrentInstance();
             HttpServletRequest request = (HttpServletRequest) facesContext.getExternalContext().getRequest();
             HttpSession session = request.getSession(true);
@@ -148,7 +139,7 @@ public class loginCDIBean implements Serializable {
             session.setAttribute("name", u.getName());
             session.setAttribute("role", u.getRoleName());
 
-            // Redirect by role
+            // redirect by role
             if ("admin".equalsIgnoreCase(u.getRoleName())) {
                 return "/admin/admin_dashboard.jsf?faces-redirect=true";
             } else {
@@ -157,8 +148,8 @@ public class loginCDIBean implements Serializable {
 
         } catch (Exception e) {
             e.printStackTrace();
-            errorstatus = "Something went wrong during login.";
-            return "login";
+            errorstatus = "Something went wrong during login";
+            return null;
         }
     }
 
@@ -179,8 +170,8 @@ public class loginCDIBean implements Serializable {
      * if (!valid) { errorstatus = "Invalid email or password"; return "login";
      * }
      *
-     * // Load role String role = this.u.getRoleName(); System.out.println("User
-     * role = " + role);
+     * // Load role String role = this.u.getRoleName();
+     * System.out.println("User role = " + role);
      *
      * // Authenticate so container knows user is logged in Credential
      * credential = new UsernamePasswordCredential(email, new
@@ -254,23 +245,21 @@ public class loginCDIBean implements Serializable {
 
     public String logout() {
         try {
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-            HttpServletRequest request = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+            FacesContext context = FacesContext.getCurrentInstance();
+            HttpServletRequest request
+                    = (HttpServletRequest) context.getExternalContext().getRequest();
 
-            HttpSession session = request.getSession(false); // Get the current session, don't create a new one if it doesn't exist
+            HttpSession session = request.getSession(false);
             if (session != null) {
                 session.invalidate();
             }
 
-            request.logout();
+            return "/login.jsf?faces-redirect=true";
 
-            System.out.println("User logged out successfully.");
-
-            facesContext.getExternalContext().redirect(request.getContextPath() + "/login.jsf");
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return null; // Navigation case is handled by the redirect
     }
 
 }

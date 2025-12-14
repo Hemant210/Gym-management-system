@@ -120,11 +120,13 @@
                                     </div>
                                     <h5 class="user-name">#{session.getAttribute('name')}</h5>
                                     <h6 class="user-email">#{profileCDI.u.email}</h6>
-                                    <h:commandButton value="Log Out"
-                                                     action="#{loginBean.logout()}"
-                                                     styleClass="btn btn-danger"
-                                                     style="height: 30px; " />
-                                </div>`
+                                    <h:form>
+                                        <h:commandButton value="Log Out"
+                                                         action="#{loginBean.logout}"
+                                                         styleClass="btn btn-danger"
+                                                         style="height: 30px;" />
+                                    </h:form>
+                                </div>
                             </div>
                         </div>
                     </div>
