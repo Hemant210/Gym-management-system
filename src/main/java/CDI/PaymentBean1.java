@@ -8,7 +8,10 @@ import jakarta.annotation.PostConstruct;
 import jakarta.inject.Named;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import java.io.Serializable;
+import java.util.Date;
 
 @Named(value = "paymentBean")
 @ViewScoped
@@ -17,6 +20,8 @@ public class PaymentBean1 implements Serializable {
     @Inject
     private PaymentEJB paymentEJB;
 
+    @PersistenceContext(unitName = "em")
+    private EntityManager em;
     @Inject
     private adminBeanLocal abl;  // Inject the PaymentEJB for order creation
 
@@ -83,4 +88,21 @@ public class PaymentBean1 implements Serializable {
     public void setPaymentStatusMessage(String paymentStatusMessage) {
         this.paymentStatusMessage = paymentStatusMessage;
     }
+    
+    public void updateDeliveryStatus(int orderId, boolean delivered) {
+    Ordertbl order = em.find(Ordertbl.class, orderId);
+    if (order != null) {
+        order.setIsDelivered(delivered);
+
+        if (delivered) {
+            order.setDeliveredAt(new Date().toString());
+        } else {
+            order.setDeliveredAt(null);
+        }
+
+        em.merge(order);
+    }
+}
+
+    
 }

@@ -532,4 +532,6 @@ public class adminBean implements adminBeanLocal {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         return em.createNamedQuery("MemberTable.findAll").getResultList();
     }
+    
+    
 }

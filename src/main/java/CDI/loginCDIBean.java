@@ -16,15 +16,8 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.security.enterprise.AuthenticationStatus;
-import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
-import static jakarta.security.enterprise.AuthenticationStatus.SEND_CONTINUE;
-import static jakarta.security.enterprise.AuthenticationStatus.SUCCESS;
 import jakarta.security.enterprise.SecurityContext;
-import static jakarta.security.enterprise.authentication.mechanism.http.AuthenticationParameters.withParams;
-import jakarta.security.enterprise.credential.Credential;
-import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
@@ -115,7 +108,6 @@ public class loginCDIBean implements Serializable {
 
     public String login() {
         try {
-            // fetch user by email
             u = abl.getUserByEmail(email);
 
             if (u == null) {
@@ -123,15 +115,15 @@ public class loginCDIBean implements Serializable {
                 return null;
             }
 
-            // compare password with DB password
-            if (!password.equals(u.getPassword())) {
+            // Plain text password comparison
+            if (!u.getPassword().trim().equals(password.trim())) {
                 errorstatus = "Invalid email or password";
                 return null;
             }
 
-            // create session
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-            HttpServletRequest request = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+            FacesContext context = FacesContext.getCurrentInstance();
+            HttpServletRequest request
+                    = (HttpServletRequest) context.getExternalContext().getRequest();
             HttpSession session = request.getSession(true);
 
             session.setAttribute("userId", u.getId());
@@ -139,7 +131,6 @@ public class loginCDIBean implements Serializable {
             session.setAttribute("name", u.getName());
             session.setAttribute("role", u.getRoleName());
 
-            // redirect by role
             if ("admin".equalsIgnoreCase(u.getRoleName())) {
                 return "/admin/admin_dashboard.jsf?faces-redirect=true";
             } else {
@@ -148,7 +139,7 @@ public class loginCDIBean implements Serializable {
 
         } catch (Exception e) {
             e.printStackTrace();
-            errorstatus = "Something went wrong during login";
+            errorstatus = "Login failed";
             return null;
         }
     }
